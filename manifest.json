@@ -8,5 +8,5 @@
     }
   ],
   "start_url": "/dist/index.html",
-  "script": "/dist/script.js"
+  "script": "/app/main.js"
 }

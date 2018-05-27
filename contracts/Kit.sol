@@ -10,7 +10,7 @@ import "@aragon/apps-voting/contracts/Voting.sol";
 import "@aragon/apps-token-manager/contracts/TokenManager.sol";
 import "@aragon/os/contracts/lib/minime/MiniMeToken.sol";
 
-import "./CounterApp.sol";
+import "./Voting2.sol";
 
 contract KitBase is APMNamehash {
 	ENS public ens;
@@ -59,7 +59,7 @@ contract Kit is KitBase {
 		bytes32 votingAppId = apmNamehash("voting");
 		bytes32 tokenManagerAppId = apmNamehash("token-manager");
 
-		CounterApp app = CounterApp(dao.newAppInstance(appId, latestVersionAppBase(appId)));
+		Voting2 app = Voting2(dao.newAppInstance(appId, latestVersionAppBase(appId)));
 		Voting voting = Voting(dao.newAppInstance(votingAppId, latestVersionAppBase(votingAppId)));
 		TokenManager tokenManager = TokenManager(dao.newAppInstance(tokenManagerAppId, latestVersionAppBase(tokenManagerAppId)));
 
@@ -75,8 +75,7 @@ contract Kit is KitBase {
 
 		acl.createPermission(ANY_ENTITY, voting, voting.CREATE_VOTES_ROLE(), root);
 
-		acl.createPermission(voting, app, app.INCREMENT_ROLE(), voting);
-		acl.createPermission(ANY_ENTITY, app, app.DECREMENT_ROLE(), root);
+		acl.createPermission(voting, app, app.CREATE_VOTES_ROLE(), voting);
 		acl.grantPermission(voting, tokenManager, tokenManager.MINT_ROLE());
 
 		// Clean up permissions

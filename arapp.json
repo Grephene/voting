@@ -3,15 +3,15 @@
   "version": "19.0.1",
   "roles": [
     {
-      "name": "Increment the counter",
-      "id": "INCREMENT_ROLE",
+      "name": "Create new votes",
+      "id": "CREATE_VOTES_ROLE",
       "params": []
     },
     {
-      "name": "Decrement the counter",
-      "id": "DECREMENT_ROLE",
-      "params": []
+      "name": "Modify quorum",
+      "id": "MODIFY_QUORUM_ROLE",
+      "params": ["New quorum", "Current quorum"]
     }
   ],
-  "path": "contracts/CounterApp.sol"
+  "path": "contracts/Voting2.sol"
 }
